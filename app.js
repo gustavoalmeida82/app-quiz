@@ -5,21 +5,21 @@ const paragraph = document.createElement('p')
 const correctAnswers = ['B', 'A', 'C', 'D']
 
 const getUserScore = answers => {
-    let score = 0
+    let points = 0
 
     answers.forEach((userAnswer, index) => {
         const isAnswerCorrect = userAnswer === correctAnswers[index]
         
         if (isAnswerCorrect) {
-            score += 25
+            points += 25
         }            
     })
 
-    return score
+    return points
 }
 
-const insertParagraphIntoDOM = score => {
-    paragraph.textContent = `A sua pontuação foi ${score}`
+const insertParagraphIntoDOM = points => {
+    paragraph.textContent = `A sua pontuação foi ${points}`
     paragraph.classList.add('text-center')
     button.insertAdjacentElement('beforebegin', paragraph)
 }
@@ -34,9 +34,9 @@ const handleSubmit = event => {
         form.inputQuestion4.value
     ]    
 
-    const userScore = getUserScore(userAnswers)
+    const userPoints = getUserScore(userAnswers)
 
-    insertParagraphIntoDOM(userScore)
+    insertParagraphIntoDOM(userPoints)
 }
 
 form.addEventListener('submit', handleSubmit)
