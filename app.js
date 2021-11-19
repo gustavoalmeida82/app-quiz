@@ -1,27 +1,43 @@
 const form = document.querySelector('form')
-const button = document.querySelector('button')
-const paragraph = document.createElement('p')
+const finalResult = document.querySelector('.result')
 
 const correctAnswers = ['B', 'A', 'C', 'D']
 
-const getUserScore = answers => {
-    let points = 0
+const getUserScore = userAnswers => {
+    let score = 0
 
-    answers.forEach((userAnswer, index) => {
+    userAnswers.forEach((userAnswer, index) => {
         const isAnswerCorrect = userAnswer === correctAnswers[index]
         
         if (isAnswerCorrect) {
-            points += 25
+            score += 25
         }            
     })
 
-    return points
+    return score
 }
 
-const insertParagraphIntoDOM = points => {
-    paragraph.textContent = `A sua pontuação foi ${points}`
-    paragraph.classList.add('text-center')
-    button.insertAdjacentElement('beforebegin', paragraph)
+const showScore = score => {
+    scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    })
+
+    finalResult.classList.remove('d-none')
+
+    let counter = 0
+
+    const animateScore = () => {
+        if (counter === score) {
+            clearInterval(timer)
+        }
+
+        finalResult.querySelector('span').textContent = `${counter}%`
+        counter++
+    }
+
+    const timer = setInterval(animateScore, 20)
 }
 
 const handleSubmit = event => {
@@ -34,9 +50,9 @@ const handleSubmit = event => {
         form.inputQuestion4.value
     ]    
 
-    const userPoints = getUserScore(userAnswers)
+    const userScore = getUserScore(userAnswers)
 
-    insertParagraphIntoDOM(userPoints)
+    showScore(userScore)
 }
 
 form.addEventListener('submit', handleSubmit)

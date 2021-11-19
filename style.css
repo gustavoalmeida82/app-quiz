@@ -1,11 +1,13 @@
-* {
+*,
+::after,
+::before {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: sans-serif;;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: normal;
     color: #f8f9fa;
     background: #343a40;;    
@@ -26,6 +28,24 @@ label {
     margin: 0.5em 1.4em 0;
     font-size: 1rem;
     font-weight: normal;    
+}
+
+.d-none {
+    display: none;
+}
+
+.result {    
+    background: #ffff;
+    color: #343a40;
+    padding: 1em 0;
+    text-align: center;
+}
+
+.user-score {
+    display: inline-block;    
+    font-size: 3.5rem;
+    color: #1382dd;
+    width: 2.5em;
 }
 
 .title {
@@ -54,10 +74,11 @@ label {
 }
 
 .btn {
-    display: inline-block;
+    display: block;
     border: none;
+    border-radius: 5px;
     padding: 0.5em 0.75em;
     background: #ffdd28;
     color: #343a40;
-    margin: 0 auto;
+    margin: 0 auto 3em auto;
 }
